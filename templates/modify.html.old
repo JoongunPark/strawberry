@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../static/jquery.min.js"></script>
+
+</head>
+<body>
+<form action="/modify/" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="학번" name="studentID">
+    <button type="submit"  name="search"> 예약확인 </button>
+</form>
+<ul id="reservation-list">
+    {% for reservation in reservations %}
+        <li data-reservation-id="{{ reservation.reserveID }}">
+            <span>
+                {{ reservation.name }} {{ reservation.studentID }} {{ reservation.date }} {{ reservation.numBerries }} {{ reservation.numRolls }}
+            </span>
+        </li>
+    {% endfor %}
+</ul>
+    <script>
+        $(document).ready(function(){
+            $.each($('ul#reservation-list li'), function (i, li) {
+
+                var $li = $(li);
+                var reservationID = $li.attr('data-reservation-id');
+                var b = $(document.createElement('input')).attr('type', 'password');
+
+                var a = $(document.createElement('button')).click(function(e){
+                    $.ajax({
+                            'method' : 'get',
+                            'dataType': 'text',
+                            'url' : '/modify/',
+                            'data' : {
+                                'reservationID' : reservationID,
+                                'password': b.val()
+                            },
+                            'success' : function(res){
+                                //console.log("success!!" + reservationID);
+                                alert(res);
+                                location.reload();
+                            },
+                            'error': function(jqxhr){
+                                console.log("wtf!!" + reservationID);
+                            }
+                    });
+                }).text("예약 취소");
+                $li.append(b);
+                $li.append(a);
+            })
+        });
+
+    </script>
+</body>
+</html>

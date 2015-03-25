@@ -39,7 +39,6 @@ def reserve(request):
                                       numBerries=int(numBerries), numRolls=int(numRolls), date=date)
             status = 'success'
             reservation.save()
-
     return render(request, "reserve.html", {'status': status})
 
 

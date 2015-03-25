@@ -77,3 +77,4 @@ db.sqlite3
 # Ignore django migrations/ on development
 migrations/
 
+*.db
