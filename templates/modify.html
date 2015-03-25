@@ -16,7 +16,7 @@
     {% for reservation in reservations %}
         <li data-reservation-id="{{ reservation.reserveID }}">
             <span>
-                {{ reservation.Name }} {{ reservation.studentID }} {{ reservation.date }} {{ reservation.numBerries }} {{ reservation.numRolls }}
+                {{ reservation.name }} {{ reservation.studentID }} {{ reservation.date }} {{ reservation.numBerries }} {{ reservation.numRolls }}
             </span>
         </li>
     {% endfor %}

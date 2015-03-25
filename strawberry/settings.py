@@ -56,17 +56,11 @@ WSGI_APPLICATION = 'strawberry.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'strawberry',
-        'USER': 'root',
-        'PASSWORD': '8901',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        }
+        'default' : {
+            'ENGINE':'django.db.backends.sqlite3',
+            'NAME' : 'berry.db',
+            }
 }
 
 # Internationalization

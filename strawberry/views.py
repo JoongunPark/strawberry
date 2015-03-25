@@ -16,19 +16,29 @@ def home(request):
 def reserve(request):
     status = ''
     if request.method == 'POST':
-        studentID = int(request.POST["studentID"])
+        studentID = request.POST["studentID"]
         name = request.POST["name"]
         club = request.POST["club"]
         phone = request.POST["phone"]
         password = request.POST["password"]
-        numRolls = int(request.POST["numRolls"])
-        numBerries = int(request.POST["numBerries"])
+        numRolls = request.POST["numRolls"]
+        numBerries = request.POST["numBerries"]
         date = request.POST["date"]
-        reservation = Reservation(studentID=studentID, name=name,
-                                  club=club, phoneNum=phone, password=password,
-                                  numBerries=numBerries, numRolls=numRolls, date=date)
-        status = 'success'
-        reservation.save()
+        
+        if (len(studentID) != 8) : status = u'학번을 다시 입력해 주세요'
+        elif (len(password) != 4) : status = u'패스워드는 4자리 숫자입니다'
+        elif (not str(password).isdigit()) : status = u'패스워드는 4자리 숫자입니다'
+        elif (not numBerries.isdigit()) : status = u'딸기 수는 숫자로만 입력해 주세요'
+        elif (not numRolls.isdigit()) : status = u'김밥 수는 숫자로만 입력해 주세요'
+        elif (not date.split(" ")[0]=='April'):
+            status = u'딸기파티 기한은 4월1일부터 4월11일입니다'
+        elif (int(date.split(" ")[1][:-3]) >= 12) : status = u'딸기파티 기한은 4월1일부터 4월11일입니다'
+        else:
+            reservation = Reservation(studentID=int(studentID), name=name,
+                                      club=club, phoneNum=phone, password=password,
+                                      numBerries=int(numBerries), numRolls=int(numRolls), date=date)
+            status = 'success'
+            reservation.save()
 
     return render(request, "reserve.html", {'status': status})
 
@@ -46,19 +56,24 @@ def printEx():
 
     for reservation in reservations:
 	    date = int(reservation.date.split(" ")[1][:-3])
-	    t = (date, reservation.reserveID , reservation.name, reservation.studentID,
-                reservation.numBerries, reservation.numRolls, reservation.phoneNum)
+	    t = (date, reservation.reserveID , reservation.name, reservation.studentID, reservation.club,
+                reservation.numBerries, reservation.numRolls, reservation.phoneNum, reservation.date)
 	    l.append(t)
 
     l.sort(compare)
 
-    with io.open("static/yum.csv", 'w', encoding='utf8') as outfile:
-        outfile.write(("날짜,예약 번호,예약자,학번,딸기 주문량,김밥 주문량,전화번호"+'\n').decode('utf-8'))
+    with io.open("static/yum.csv", 'w', encoding='cp949') as outfile:
+        outfile.write(("reservationID,name,studentID,club,strawBerry,GimBob,phone,date\n").decode('cp949'))
         for t in l:
-                outfile.write((str(t[0]) + "," + str(t[1]) + ",").decode('utf-8'))
+                outfile.write((str(t[1]) + ",").decode('cp949'))
                 outfile.write(t[2])
-                outfile.write((","+str(t[3]) + "," + str(t[4]) + "," + str(t[5]) + "," + t[6] + "\n").decode('utf-8'))
-    io.close()
+                outfile.write((","+str(t[3])+",").decode('cp949'))
+                outfile.write(t[4])
+                outfile.write(( "," + str(t[5]) + "," + str(t[6]) + ",").decode('cp949'))
+                outfile.write(t[7]+","+t[8].split(",")[0])
+               # outfile.write(("\n").decode('cp949')))
+                outfile.write(("\n").decode('cp949'))
+   # io.close()
 
     return
 

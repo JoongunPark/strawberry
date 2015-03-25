@@ -23,16 +23,18 @@
 
     <form action="#" method="post">
         {% csrf_token %}
-        <br>    <input type="text" placeholder="학번" name="studentID"> </br>
+         <button type="submit"  name="예약하기"> crawl </button>
+
+        <li>    <input type="text" placeholder="학번" name="studentID"> </li>
         <li>    <input type="text" placeholder="이름" name="name"> </li>
         <li>    <input type="text" placeholder="단체명" name="club"> </li>
         <li>    <input type="text" placeholder="연락처" name="phone"> </li>
         <li>    <input type="password" placeholder="비밀번호" name="password"> </li>
         <li>    <input type="text" placeholder="딸기 수" name="numBerries"> </li>
         <li>    <input type="text" placeholder="김밥 수" name="numRolls"> </li>
-        <br>    <input type="text" id="checkin" placeholder="날짜" name='date'>  </br>
+        <li>    <input type="text" id="checkin" placeholder="날짜" name='date' readonly>  </li></form>
 
-        <button type="submit"  name="예약하기"> crawl </button> </form>
+
 {% else %}
     <form action="/" method="get">
     <button > 메인으로 </button> </form>
