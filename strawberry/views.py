@@ -58,6 +58,8 @@ def printEx():
                 outfile.write((str(t[0]) + "," + str(t[1]) + ",").decode('utf-8'))
                 outfile.write(t[2])
                 outfile.write((","+str(t[3]) + "," + str(t[4]) + "," + str(t[5]) + "," + t[6] + "\n").decode('utf-8'))
+    io.close()
+
     return
 
 
