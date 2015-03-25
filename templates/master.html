@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="../static/jquery.min.js"></script>
+
+    <title></title>
+</head>
+<body>
+<ul id="reservation-list">
+    {% for reservation in reservations %}
+        <li data-reservation-id="{{ reservation.reserveID }}">
+            <span>
+                {{ reservation.Name }} {{ reservation.studentID }} {{ reservation.date }} {{ reservation.numBerries }} {{ reservation.numRolls }}
+            </span>
+        </li>
+    {% endfor %}
+</ul>
+<script>
+       $(document).ready(function(){
+            $.each($('ul#reservation-list li'), function (i, li) {
+
+                var $li = $(li);
+                var reservationID = $li.attr('data-reservation-id');
+                var a = $(document.createElement('button')).click(function(e){
+                    $.ajax({
+                            'method' : 'get',
+                            'dataType': 'text',
+                            'url' : '/master/',
+                            'data' : {
+                                'reservationID' : reservationID
+                            },
+                            'success' : function(res){
+                                //console.log("success!!" + reservationID);
+                                alert(res);
+                                location.reload();
+                            },
+                            'error': function(jqxhr){
+                                console.log("wtf!!" + reservationID);
+                            }
+                    });
+                }).text("예약 취소");
+                $li.append(a);
+            })
+        });
+</script>
+    <a href="../static/yum.csv">
+            <button> 출력하기 </button>
+    </a>
+    </body>
+    </html>
