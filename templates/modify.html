@@ -76,7 +76,7 @@
 
                 var $tr = $(tr);
                 var reservationID = $tr.attr('data-reservation-id');
-                var b = $(document.createElement('input')).attr('type', 'password');
+                var b = $(document.createElement('input')).attr('type', 'password').attr('class', 'form-control').attr('style', 'width:100px');
                 var a = $(document.createElement('button')).click(function(e){
                     $.ajax({
                             'method' : 'get',
@@ -95,9 +95,9 @@
                                 console.log("wtf!!" + reservationID);
                             }
                     });
-                }).text("예약 취소");
+                }).text("예약 취소").attr('class', 'btn btn-danger');
                 var wrap_a = $(document.createElement('td'));
-                var wrap_b = $(document.createElement('td'));
+                var wrap_b = $(document.createElement('td')).attr('style', 'width: 100px');
                 wrap_a.append(a);
                 wrap_b.append(b);
                 $tr.append(wrap_b);
