@@ -12,6 +12,6 @@ urlpatterns = patterns('',
                        url(r'^reserve/', 'strawberry.views.reserve'),
                        url(r'^modify/', 'strawberry.views.modify'),
                        url(r'^print/', 'strawberry.views.printEx'),
-                       url(r'^master/', 'strawberry.views.master'),
+                       url(r'^master/([^/]+)/', 'strawberry.views.master'),
 
                        )

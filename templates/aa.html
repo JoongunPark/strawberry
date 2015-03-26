@@ -11,7 +11,7 @@
     <title>2015 Strawberry Party</title>
 
     <link href="../static/css/bootstrap.css" rel="stylesheet">
-    <link href="../static/datepicker/css/datepicker.css" rel="stylesheet">
+    <link href="../static/css/datepicker.css" rel="stylesheet">
 
     <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -91,7 +91,7 @@
         <div class="form-group">
             <label for="password" class="col-sm-2 control-label">비밀번호</label>
             <div class="col-sm-10">
-                <input type="password" name="password" class="form-control" placeholder="4자리 숫자로 입력하세요">
+                <input type="password" name="pasword" class="form-control" placeholder="4자리 숫자로 입력하세요">
             </div>
         </div>
         <div class="form-group">
@@ -109,7 +109,7 @@
         <div class="form-group">
             <label for="date" class="col-sm-2 control-label">날짜</label>
             <div class="col-sm-10">
-                <input type="text" id="dpd3" name="date" class="form-control" readonly placeholder="4월 1일~4월 11일(일요일 제외)입니다">
+                <input type="text" id="dp2" name="date" class="form-control" readonly placeholder="4월 1일~4월 11일(일요일 제외)입니다">
             </div>
         </div>
         <div class="form-group">
@@ -132,8 +132,8 @@
 
 
     <script src="../static/jquery.min.js"></script>
-    <script src="../static/datepicker/js/bootstrap-datepicker.js"></script>
-	<script>
+    <script src="../static/datepicker.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
 	if (top.location != location) {
     top.location.href = document.location.href ;
   }
@@ -174,50 +174,31 @@
 					$('#dp5').datepicker('hide');
 				});
 
-				var nowTemp = new Date();
-var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        // disabling dates
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
-var checkin = $('#dpd1').datepicker({
-  onRender: function(date) {
-    return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  }
-}).on('changeDate', function(ev) {
-  if (ev.date.valueOf() > checkout.date.valueOf()) {
-    var newDate = new Date(ev.date)
-    newDate.setDate(newDate.getDate() + 1);
-    checkout.setValue(newDate);
-  }
-  checkin.hide();
-  $('#dpd2')[0].focus();
-}).data('datepicker');
-var checkout = $('#dpd2').datepicker({
-  onRender: function(date) {
-    return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  }
-}).on('changeDate', function(ev) {
-  checkout.hide();
-}).data('datepicker');
-				});
-
-				var checkout = $('#dpd3').datepicker({
-  onRender: function(date) {
-  var nowTemp = new Date();
-var now = new Date(2015, 3, 0, 0, 0, 0, 0);
-var now2 = new Date(2015, 3, 11, 0, 0, 0, 0);
-var now3 = new Date(2015, 3, 5, 0, 0, 0, 0);
-    if (date.valueOf() <= now.valueOf()){
-        return 'disabled';
-    }
-    if (date.valueOf() > now2.valueOf()){
-        return 'disabled';
-    }
-    if (date.valueOf() == now3.valueOf()){
-        return 'disabled';
-    }
-    return '';
-  }
-
-});
+        var checkin = $('#dpd1').datepicker({
+          onRender: function(date) {
+            return date.valueOf() < now.valueOf() ? 'disabled' : '';
+          }
+        }).on('changeDate', function(ev) {
+          if (ev.date.valueOf() > checkout.date.valueOf()) {
+            var newDate = new Date(ev.date)
+            newDate.setDate(newDate.getDate() + 1);
+            checkout.setValue(newDate);
+          }
+          checkin.hide();
+          $('#dpd2')[0].focus();
+        }).data('datepicker');
+        var checkout = $('#dpd2').datepicker({
+          onRender: function(date) {
+            return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+          }
+        }).on('changeDate', function(ev) {
+          checkout.hide();
+        }).data('datepicker');
+		});
 	</script>
 	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
 </script>
