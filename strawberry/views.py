@@ -59,7 +59,7 @@ def printEx(num):
 
     l.sort(compare)
 
-    with io.open("static/yum.csv", 'w', encoding='cp949') as outfile:
+    with io.open("static/strawberry.csv", 'w', encoding='cp949') as outfile:
         outfile.write(("reservationID,name,studentID,club,strawBerry,GimBob,phone,date\n").decode('cp949'))
         for t in l:
             if num==t[0]:
