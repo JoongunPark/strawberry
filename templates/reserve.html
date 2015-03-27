@@ -54,63 +54,78 @@
             </a>
         </div>
 
-       <div class="jumbotron">
-          <h1>2015 딸기파티 신청하기</h1>
-          <h2>지금 신청하세요!</h2>
-          <h3>신청 하게.</h3>
-          <p class="lead"> zzz</p>
+        <div class="row marketing">
+        <div class="col-lg-13">
+                 <h4>주의사항</h4>
+          <p> 기입해야 되는 내용을 정확히 입력해주세요.<br>
+연락처는 반드시 휴대폰 번호를 적어주시기 바랍니다.<br>딸기를 5box 이상 주문 시 수령 이틀 전과 하루 전 상근시간에 연락을 드리니 꼭 틀리지 않게 적어주시길 바랍니다.<br>
+비밀번호는 네 자리의 숫자로 꼭 기억해주세요.<br>
+<span style="color:red"><strong>주문을 수정해야 할 시에는 반드시 학번과 비밀번호를 이용해 전 주문을 취소 후 다시 예약해야함을 꼭 기억해주세요.</strong></span><br></p>
+
+        </div>
+
+        <div class="col-lg-13">
+           <h4>Notice</h4>
+          <p>Please write things precisely.<br>
+Please write your phone number.<br>
+If you order more than 5 boxes, we will call you two times. The day before and before you will get the strawberry. So please write phone number precisely.
+The password is 4 number. Please remember it.<br>
+<span style="color:red"><strong>If you want to modify the reservation, you must use ‘Student ID and Password’ and must ‘Cancel’ the previous reservation and make reservation again.</strong></span>
+</p>
+        </div>
+
     </div>
       {% if status != 'success' %}
     <form class="form-horizontal" action="#" method="post" style="">
         {% csrf_token %}
          <div class="form-group">
-            <label for="date" class="col-sm-2 control-label">날짜</label>
+            <label for="date" class="col-sm-2 control-label">날짜(date)</label>
             <div class="col-sm-10">
                 <input type="text" id="dpd3" value="04/01/2015" name="date" class="form-control" readonly placeholder="4월 1일~4월 11일(일요일 제외)입니다">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="inputID" class="col-sm-2 control-label">학번</label>
+            <label for="inputID" class="col-sm-2 control-label">학번(studentID)</label>
             <div class="col-sm-10">
                 <input type="text" name="studentID" class="form-control">
             </div>
         </div>
         <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">이름</label>
+            <label for="name" class="col-sm-2 control-label">이름(name)</label>
             <div class="col-sm-10">
                 <input type="text" name="name" class="form-control">
             </div>
         </div>
         <div class="form-group">
-            <label for="club" class="col-sm-2 control-label">단체명</label>
+            <label for="club" class="col-sm-2 control-label">단체명(club)</label>
             <div class="col-sm-10">
                 <input type="text" name="club" class="form-control">
             </div>
         </div>
         <div class="form-group">
-            <label for="phone" class="col-sm-2 control-label">전화번호</label>
+            <label for="phone" class="col-sm-2 control-label">전화번호(phone)</label>
             <div class="col-sm-10">
                 <input type="text" name="phone" class="form-control" placeholder="양식 : 010-1111-1111">
             </div>
 
         </div>
         <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">비밀번호</label>
+            <label for="password" class="col-sm-2 control-label">비밀번호(password)</label>
             <div class="col-sm-10">
-                <input type="password" name="password" class="form-control" placeholder="4자리 숫자로 입력하세요">
+                <input type="password" name="password" class="form-control" placeholder="4자리 숫자로 입력하세요. write only 4 digits">
             </div>
         </div>
         <div class="form-group">
-            <label for="numBerries" class="col-sm-2 control-label">딸기 수</label>
+            <label for="numBerries" class="col-sm-2 control-label">딸기 수(strawberry)</label>
             <div class="col-sm-10">
-                <input type="text" name="numBerries" class="form-control" placeholder="숫자만 입력하세요">
+                <input type="text" name="numBerries" class="form-control" placeholder="숫자만 입력하세요. write only number ">
             </div>
         </div>
         <div class="form-group">
-            <label for="numRolls" class="col-sm-2 control-label">김밥 수</label>
+            <label for="numRolls" class="col-sm-2 control-label">김밥 수(kimbob)</label>
             <div class="col-sm-10">
-                <input type="text" name="numRolls" class="form-control" placeholder="숫자만 입력하세요">
+                <input type="text" name="numRolls" class="form-control" placeholder="숫자만 입력하세요. write only number">
             </div>
         </div>
 

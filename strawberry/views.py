@@ -25,12 +25,12 @@ def reserve(request):
         numBerries = request.POST["numBerries"]
         date = request.POST["date"]
         
-        if (len(studentID) != 8) : status = u'학번을 다시 입력해 주세요'
-        elif (len(password) != 4) : status = u'패스워드는 4자리 숫자입니다'
-        elif (not str(password).isdigit()) : status = u'패스워드는 4자리 숫자입니다'
-        elif (not numBerries.isdigit()) : status = u'딸기 수는 숫자로만 입력해 주세요'
+        if (len(studentID) != 8) : status = u'학번을 다시 입력해 주세요. write studentID again'
+        elif (len(password) != 4) : status = u'패스워드는 4자리 숫자입니다. write password again'
+        elif (not str(password).isdigit()) : status = u'패스워드는 4자리 숫자입니다. write password again'
+        elif (not numBerries.isdigit()) : status = u'딸기 수는 숫자로만 입력해 주세요.'
         elif (not numRolls.isdigit()) : status = u'김밥 수는 숫자로만 입력해 주세요'
-        elif (len(phone.split("-")) != 3) : status = u'전화번호 양식에 맞게 입력해주세요'
+        elif (len(phone.split("-")) != 3) : status = u'전화번호 양식에 맞게 입력해주세요. write phone number again'
         else:
             reservation = Reservation(studentID=int(studentID), name=name,
                                       club=club, phoneNum=phone, password=password,
@@ -100,9 +100,9 @@ def modify(request):
     reservations = []
     if request.method == 'POST':
         if request.POST["studentID"] != None:
-            studentID = int(request.POST["studentID"])
+            studentID = request.POST["studentID"]
             #password = request.POST["password"]
-            reservations = Reservation.objects.all().filter(studentID=studentID)
+            if (studentID != '') : reservations = Reservation.objects.all().filter(studentID=int(studentID))
     else:
         reservationID = request.GET.get('reservationID', None)
         password = request.GET.get('password', None)
